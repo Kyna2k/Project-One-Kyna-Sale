@@ -94,14 +94,23 @@
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:layout_marginTop="24dp"
-        android:id="@+id/btn_dangnhap"
-        style="@style/btn_signup"
-        android:fontFamily="@font/poppinsbold"
-        android:text="Đăng nhập"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ghi nhớ mật khẩu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_dangnhap"
+        style="@style/btn_signup"
+        android:elevation="10dp"
+        android:fontFamily="@font/poppinsbold"
+        android:text="Đăng nhập"
+        android:textColor="#08090B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

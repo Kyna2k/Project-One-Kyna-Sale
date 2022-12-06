@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">KynaSale</string>
+    <string name="open" translatable="false">open</string>
+    <string name="close" translatable="false">close</string>
+
+
 </resources>

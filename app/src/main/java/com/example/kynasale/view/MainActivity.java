@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.hoadon:
+
                         drawerLayout.closeDrawers();
 
                         break;

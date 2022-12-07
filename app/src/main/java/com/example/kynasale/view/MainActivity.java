@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(API_SERVICE.class);
+
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Kyna Sale");
         setSupportActionBar(toolbar);

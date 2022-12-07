@@ -2,9 +2,9 @@ package com.example.kynasale.model;
 
 public class XuLyHoaDonModel {
     private int maHoaDon;
-    private byte trangThai;
+    private int trangThai;
 
-    public XuLyHoaDonModel(int maHoaDon, byte trangThai) {
+    public XuLyHoaDonModel(int maHoaDon, int trangThai) {
         this.maHoaDon = maHoaDon;
         this.trangThai = trangThai;
     }
@@ -17,11 +17,11 @@ public class XuLyHoaDonModel {
         this.maHoaDon = maHoaDon;
     }
 
-    public byte getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(byte trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 }

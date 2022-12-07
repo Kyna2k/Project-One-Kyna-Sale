@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:id="@+id/list_car"
+    app:cardElevation="0dp"
+    android:tag="chonlaysach"
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/hinh_laptop"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:background="#EEEE"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:text="Lenovo think book"
+            android:id="@+id/ten_sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:padding="2dp"
+            android:layout_marginStart="12dp"
+            android:maxLength="20"
+            android:textColor="@color/app_title_text"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/hinh_laptop"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/gia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsbold"
+            android:text="5000"
+            android:textColor="@color/app_color_main"
+            app:layout_constraintStart_toStartOf="@+id/ten_sp"
+            app:layout_constraintTop_toBottomOf="@+id/ten_sp" />
+
+        <TextView
+            android:id="@+id/gia_goc"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinsregular"
+            android:text="5000"
+            android:textColor="@color/app_text_second"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/ten_sp" />
+        <TextView
+            android:id="@+id/khuyenMai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center"
+            android:text="-10%"
+            android:textColor="@color/app_text_erro"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/gia_goc"
+            app:layout_constraintStart_toEndOf="@+id/gia_goc" />
+
+        <TextView
+            android:id="@+id/soluong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

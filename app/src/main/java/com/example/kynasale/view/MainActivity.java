@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.kynasale.API_SERVICE.API_SERVICE;
 import com.example.kynasale.R;
+import com.example.kynasale.fragment.Fragment_Home;
 import com.example.kynasale.fragment.Fragment_TrangChu;
 import com.example.kynasale.model.NhanVien;
 import com.google.android.material.navigation.NavigationView;
@@ -76,14 +78,15 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment = null;
                 switch (item.getItemId())
                 {
                     case R.id.TrangChu:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main,new Fragment_TrangChu(),null).commit();
+                        fragment = new Fragment_TrangChu();
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.hoadon:
-
+                        fragment = new Fragment_Home();
                         drawerLayout.closeDrawers();
 
                         break;
@@ -100,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
+                getSupportFragmentManager().beginTransaction().replace(R.id.main,fragment,null).commit();
+
                 return true;
             }
         });

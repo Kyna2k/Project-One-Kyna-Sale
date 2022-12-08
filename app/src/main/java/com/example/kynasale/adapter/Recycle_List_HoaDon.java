@@ -19,11 +19,7 @@ import com.example.kynasale.R;
 import com.example.kynasale.model.ChiTietHoaDon;
 import com.example.kynasale.model.Convent_Money;
 import com.example.kynasale.model.HoaDon;
-import com.example.kynashop.Interfaces.Click_ChiTietHoaDon;
-import com.example.kynashop.R;
-import com.example.kynashop.model.ChiTietHoaDon;
-import com.example.kynashop.model.Convent_Money;
-import com.example.kynashop.model.HoaDon;
+
 
 import java.util.ArrayList;
 
@@ -93,7 +89,7 @@ public class Recycle_List_HoaDon extends RecyclerView.Adapter<Recycle_List_HoaDo
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                click.click_me(ds.get(position));
+                click.click_me(ds.get(holder.getAdapterPosition()));
             }
         });
     }

@@ -67,17 +67,7 @@ public class Recycle_List_DonHang extends RecyclerView.Adapter<Recycle_List_DonH
 
         holder.ten_sp.setText(ds.get(position).getSanPham().getTenSanPham());
         holder.soluong.setText( "X"+String.valueOf(ds.get(position).getSoLuong()));
-        holder.list_car.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(context, ChiTietSanPhamActivity.class);
-//                Bundle build = new Bundle();
-//                build.putInt("MASANPHAM",ds.get(holder.getAdapterPosition()).getMaSanPham());
-//                intent.putExtras(build);
-//                intent.setAction("CHITIETSANPHAM");
-//                context.startActivity(intent);
-            }
-        });
+
     }
 
     @Override

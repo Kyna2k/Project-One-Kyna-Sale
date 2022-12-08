@@ -40,7 +40,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Fragment_Home extends Fragment {
     private TabLayout tablayout;
     private ViewPager2 viewpager2;
-    private Recycle_List_HoaDon adapter1;
     private adapter_viewpager apdater;
     private RecyclerView recyclerView;
     public Fragment_Home()
@@ -78,38 +77,6 @@ public class Fragment_Home extends Fragment {
             }
         }).attach();
     }
-    private void CallAPI(int maNhanVien, int trangThai) {
 
-        API_SERVICE requestInterface = new Retrofit.Builder()
-                .baseUrl(BASE_Service)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build().create(API_SERVICE.class);
-
-        new CompositeDisposable().add(requestInterface.getHoaDonXuLy(maNhanVien, trangThai)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::thanhcong, this::thatbai)
-        );
-    }
-    public void setData(ArrayList<HoaDon> ds) {
-        adapter1 = new Recycle_List_HoaDon(getContext(), ds, (Click_ChiTietHoaDon) this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter1);
-
-    }
-
-    private void thatbai(Throwable throwable) {
-        Log.e("getValue", "getHoaDonNo: "+ throwable.getMessage() );
-    }
-
-    private void thanhcong(ArrayList<HoaDon> hoaDons) {
-        if(hoaDons != null){
-            setData(hoaDons);
-        } else{
-
-        }
-    }
 
 }

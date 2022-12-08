@@ -86,12 +86,6 @@ public class Recycle_List_HoaDon extends RecyclerView.Adapter<Recycle_List_HoaDo
         holder.list_sanpham.setLayoutManager(linearLayoutManager);
         holder.list_sanpham.setNestedScrollingEnabled(false);
         holder.list_sanpham.setAdapter(adapter);
-        holder.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                click.click_me(ds.get(holder.getAdapterPosition()));
-            }
-        });
     }
 
     @Override

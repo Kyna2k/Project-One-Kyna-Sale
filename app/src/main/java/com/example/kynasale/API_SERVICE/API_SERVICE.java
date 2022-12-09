@@ -27,6 +27,7 @@ public interface API_SERVICE {
 
     @POST("updateHoaDonXuLy")
     Observable<Integer> updateHoaDonXuLy(@Body XuLyHoaDonModel xuLyHoaDonModel);
-
+    @POST("HuyDonHang")
+    Observable<Integer> HuyDonHang(@Query("MaDonHang") int MaDonHang, @Query("maNhanVien") int maNhanVien);
 
 }

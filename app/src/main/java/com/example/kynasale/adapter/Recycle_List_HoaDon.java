@@ -50,6 +50,8 @@ public class Recycle_List_HoaDon extends RecyclerView.Adapter<Recycle_List_HoaDo
         String value_ngay = (ds.get(position).getNgayXuatHoaDon() == null)? "" : Convent_Money.ngay(ds.get(position).getNgayXuatHoaDon());
         holder.maNhaVien.setText("Mã nhân viên: "+value_nv);
         holder.ngayxuathoadon.setText(value_ngay);
+        holder.trangthai.setEnabled(true);
+        holder.huydon.setVisibility(View.GONE);
         switch (ds.get(position).getTrangThai())
         {
             case 255:
@@ -60,20 +62,25 @@ public class Recycle_List_HoaDon extends RecyclerView.Adapter<Recycle_List_HoaDo
                 break;
             case 1:
                 holder.trangthai.setText("Chờ xác nhận");
-                holder.trangthai.setTextColor(Color.parseColor("#FF4545"));
+                holder.trangthai.setTextColor(Color.parseColor("#ffffff"));
+                holder.huydon.setVisibility(View.VISIBLE);
+                holder.huydon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        click.Huy(ds.get(holder.getAdapterPosition()).getMaHoaDon());
+                    }
+                });
                 break;
             case 2:
                 holder.trangthai.setText("Đã xác nhận");
-                holder.trangthai.setTextColor(Color.parseColor("#11998e"));
+                holder.trangthai.setTextColor(Color.parseColor("#ffffff"));
                 break;
             case 3:
-                holder.trangthai.setText("Đánh giá");
-                holder.trangthai.setTextColor(Color.parseColor("#11998e"));
+                holder.trangthai.setText("Thanh công");
+                holder.trangthai.setTextColor(Color.parseColor("#ffffff"));
+                holder.trangthai.setEnabled(false);
                 break;
-            case 4:
-                holder.trangthai.setText("Đã Đánh giá");
-                holder.trangthai.setTextColor(Color.parseColor("#11998e"));
-                break;
+
         }
         Double x = 0.0;
         for(ChiTietHoaDon chiTietHoaDon : ds.get(position).getChiTietHoaDons())
@@ -81,11 +88,17 @@ public class Recycle_List_HoaDon extends RecyclerView.Adapter<Recycle_List_HoaDo
             x += chiTietHoaDon.getTriGia()*chiTietHoaDon.getSoLuong();
         }
         holder.tong_cong.setText("Tổng cộng: "+Convent_Money.money(x));
-        Recycle_List_DonHang adapter = new Recycle_List_DonHang(context,ds.get(position).getChiTietHoaDons());
+        Recycle_List_DonHang adapter = new Recycle_List_DonHang(context,ds.get(holder.getAdapterPosition()).getChiTietHoaDons());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         holder.list_sanpham.setLayoutManager(linearLayoutManager);
         holder.list_sanpham.setNestedScrollingEnabled(false);
         holder.list_sanpham.setAdapter(adapter);
+        holder.trangthai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.click_me(ds.get(holder.getAdapterPosition()));
+            }
+        });
     }
 
     @Override
@@ -94,7 +107,7 @@ public class Recycle_List_HoaDon extends RecyclerView.Adapter<Recycle_List_HoaDo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView mahoadon,maNhaVien,trangthai,ngayxuathoadon,tong_cong;
+        private TextView mahoadon,maNhaVien,trangthai,ngayxuathoadon,tong_cong,huydon;
         private CardView item;
         RecyclerView list_sanpham;
         public ViewHolder(@NonNull View itemView) {
@@ -106,6 +119,7 @@ public class Recycle_List_HoaDon extends RecyclerView.Adapter<Recycle_List_HoaDo
             item = itemView.findViewById(R.id.item);
             list_sanpham = itemView.findViewById(R.id.list_sanpham);
             tong_cong = itemView.findViewById(R.id.tong_cong);
+            huydon = itemView.findViewById(R.id.huydon);
         }
     }
 }

@@ -4,4 +4,5 @@ import com.example.kynasale.model.HoaDon;
 
 public interface Click_ChiTietHoaDon {
     public void click_me(HoaDon hoaDon);
+    public void Huy(int MaHoaDOn);
 }

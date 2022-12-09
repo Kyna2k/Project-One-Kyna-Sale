@@ -9,20 +9,21 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_height="wrap_content"
     >
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/title_ne"
-            android:padding="2dp"
-            android:textColor="@color/white"
-            android:background="@drawable/background"
-            android:fontFamily="@font/poppinsbold"
+            android:id="@+id/huydon"
+            android:textColor="@color/app_text_erro"
             android:gravity="center"
-            android:text="Hóa đơn"
-            android:layout_width="match_parent"
+            android:text="X"
+            android:textSize="24sp"
+            android:layout_gravity="end"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"/>
+
         <androidx.recyclerview.widget.RecyclerView
 
             android:id="@+id/list_sanpham"
@@ -99,6 +100,9 @@
             android:fontFamily="@font/poppinsbold"
             android:gravity="center"
             android:text="Nhan"
+            android:clickable="true"
+
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/layvogiau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

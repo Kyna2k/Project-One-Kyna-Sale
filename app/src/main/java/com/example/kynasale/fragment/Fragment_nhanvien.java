@@ -2,11 +2,13 @@ package com.example.kynasale.fragment;
 
 import static com.example.kynasale.API_SERVICE.API_SERVICE.BASE_Service;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,7 @@ import com.example.kynasale.LoadingSreen.LoadingScreen;
 import com.example.kynasale.R;
 import com.example.kynasale.adapter.Recycle_List_HoaDon;
 import com.example.kynasale.model.HoaDon;
+import com.example.kynasale.model.XuLyHoaDonModel;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
@@ -30,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Fragment_nhanvien extends Fragment {
+public class Fragment_nhanvien extends Fragment implements Click_ChiTietHoaDon{
     private int maNhanVien;
     private int trangThai;
     private RecyclerView recycle;
@@ -75,8 +78,6 @@ public class Fragment_nhanvien extends Fragment {
     }
 
     private void CallAPI(int maNhanVien, int trangThai) {
-        LoadingScreen.LoadingShow(getContext(),"Đang tải dữ liệu");
-
 
         new CompositeDisposable().add(requestInterface.getHoaDonXuLy(maNhanVien, trangThai)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -85,7 +86,13 @@ public class Fragment_nhanvien extends Fragment {
         );
     }
     public void setData(ArrayList<HoaDon> ds) {
-        adapter1 = new Recycle_List_HoaDon(getContext(), ds, null);
+        try {
+            LoadingScreen.LoadingDismi();
+        }catch (Exception e)
+        {
+
+        }
+        adapter1 = new Recycle_List_HoaDon(getContext(), ds, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recycle.setLayoutManager(linearLayoutManager);
         recycle.setAdapter(adapter1);
@@ -100,8 +107,63 @@ public class Fragment_nhanvien extends Fragment {
         if(hoaDons != null){
             setData(hoaDons);
         } else{
+
         }
         LoadingScreen.LoadingDismi();
 
+    }
+
+    @Override
+    public void click_me(HoaDon hoaDon) {
+        updatetrangthai(new XuLyHoaDonModel(hoaDon.getMaHoaDon(),trangThai+1 ,getActivity().getSharedPreferences("NHANVIEN", Context.MODE_PRIVATE).getInt("MANV",-1)));
+
+    }
+
+    @Override
+    public void Huy(int MaHoaDOn) {
+        huydonhang(MaHoaDOn,getActivity().getSharedPreferences("NHANVIEN", Context.MODE_PRIVATE).getInt("MANV",-1));
+    }
+    private void huydonhang(int mahoadon, int manhanvien) {
+
+
+        new CompositeDisposable().add(requestInterface.HuyDonHang(mahoadon,manhanvien)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::xoathanhcong, this::xoathatbai)
+        );
+    }
+
+    private void xoathatbai(Throwable throwable) {
+    }
+
+    private void xoathanhcong(Integer integer) {
+        if(integer > 0)
+        {
+            onResume();
+            Toast.makeText(getContext(), "THành công", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void updatetrangthai(XuLyHoaDonModel xuLyHoaDonModel) {
+
+
+        new CompositeDisposable().add(requestInterface.updateHoaDonXuLy(xuLyHoaDonModel)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::thanhcong_update, this::thatbai_update)
+        );
+    }
+
+    private void thatbai_update(Throwable throwable) {
+        Log.e("getValue", "getHoaDonNo: "+ throwable.getMessage() );
+        LoadingScreen.LoadingDismi();
+    }
+
+    private void thanhcong_update(Integer integer) {
+        if(integer > 0)
+        {
+            onResume();
+        }
+        LoadingScreen.LoadingDismi();
     }
 }
